@@ -1,11 +1,12 @@
 import Nav from "./Nav";
+import * as H from "./Header.styles";
 
 function Header() {
     return (
-      <header>
+      <H.HeaderStyle>
         <div>Header</div>
         <Nav />
-      </header>
+      </H.HeaderStyle>
     );
   }
 

@@ -1,22 +1,23 @@
-import { Link } from "react-router-dom";
+import React from 'react';
+import * as L from "./Nav.styles";
 
 function Nav() {
     return (
       <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/products">Products</Link>
-          </li>
-          <li>
-              <Link to="/contact">Contact</Link>
-          </li>
-          <li>
-              <Link to="/cart">Cart</Link>
-          </li>
-        </ul>
+        <L.NavList>
+       <L.ListStyle>
+          <L.LinkStyle to="/">Home</L.LinkStyle>
+        </L.ListStyle>
+        <L.ListStyle>
+          <L.LinkStyle to="/products">Products</L.LinkStyle>
+        </L.ListStyle>
+        <L.ListStyle>
+          <L.LinkStyle to="/contact">Contact</L.LinkStyle>
+        </L.ListStyle>
+        <L.ListStyle>
+          <L.LinkStyle to="/cart">Cart</L.LinkStyle>
+        </L.ListStyle>
+        </L.NavList>
       </nav>
     );
   }
