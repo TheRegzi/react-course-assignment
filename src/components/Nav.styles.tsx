@@ -1,15 +1,11 @@
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // Flytt StyledIcon før HamburgerButton
 export const StyledIcon = styled(FontAwesomeIcon)`
   color: black;
   font-size: 2em;
-  
-  &:hover {
-    color: gray;
-  }
 `;
 
 export const Nav = styled.nav`
@@ -28,11 +24,13 @@ export const NavList = styled.ul<{ isOpen: boolean }>`
   @media (max-width: 768px) {
     flex-direction: column;
     position: absolute;
-    top: 100%;
-    left: 0;
+    top: 121%;
+    left: 100;
+    background: #EBDBFA;
     right: 0;
-    background: #fff;
+    width: 100vw;
     padding: 1em;
+    margin: 0;
     display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     z-index: 1000;
@@ -51,13 +49,26 @@ export const ListStyle = styled.li`
   }
 `;
 
-export const LinkStyle = styled(Link)`
+export const LinkStyle = styled(NavLink)`
   text-decoration: none;
   color: black;
   transition: color 0.3s ease;
+  position: relative;
   
   &:hover {
     color: white;
+  }
+
+  &.active {
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: black;
+    }
   }
 `;
 
