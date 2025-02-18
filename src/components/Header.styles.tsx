@@ -5,6 +5,8 @@ background-color: #EBDBFA;
 display: flex;
 flex-direction: row;
 align-items: center;
+justify-content: space-between;
+
 `;
 
 export const LogoLink = styled.a`
@@ -21,8 +23,10 @@ export const LogoImage = styled.img`
   height: auto;
   object-fit: contain;
   margin: 10px;
+  padding-left: 2em;
   
   @media (max-width: 768px) {
     width: 60px;
+    padding-left: 1em;
   }
 `;
