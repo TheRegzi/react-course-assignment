@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-// Flytt StyledIcon før HamburgerButton
+
 export const StyledIcon = styled(FontAwesomeIcon)`
   color: black;
   font-size: 2em;
@@ -46,6 +46,7 @@ export const ListStyle = styled.li`
   @media (max-width: 768px) {
     padding: 0.5em;
     text-align: center;
+    font-size: 1.1em;
   }
 `;
 
