@@ -112,3 +112,26 @@ export const Rating = styled.div`
     color: #f39c12;
     margin-top: 10px;
 `;
+
+export const ViewProduct = styled.button`
+background: #EBDBFA;
+border: none;
+font-family: ${props => props.theme.fonts.secondary};
+padding: 0.5em 1.5em;
+width: 100%;
+cursor: pointer;
+font-weight: bold;
+
+&:hover{
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: scale(1.03);
+  }
+
+  
+`
+
+export const ButtonContainer = styled.div`
+display: flex;
+justify-content: center;
+margin: 1em 0em 0em;
+`

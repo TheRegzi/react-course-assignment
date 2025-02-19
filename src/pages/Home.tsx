@@ -79,6 +79,9 @@ function Home() {
                                     )}
                                 </H.PriceContainer>
                                 <H.Rating>Rating: {product.rating}/5</H.Rating>
+                                <H.ButtonContainer>
+                                <H.ViewProduct to={`/product/${product.id}`} key={product.id}>View Product</H.ViewProduct>
+                                </H.ButtonContainer>
                             </H.ProductContent>
                         </H.ProductCard>
                     </H.ProductLink>
