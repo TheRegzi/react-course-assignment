@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import * as P from './Product.styles';
 
 interface ProductImage {
     url: string;
@@ -67,7 +68,7 @@ interface ProductImage {
       }
     
       return (
-          <div>
+          <P.ProductContainer>
             <h1>{product.title}</h1>
             <img src={product.image.url} alt={product.title} />
             <p>{product.description}</p>
@@ -76,7 +77,7 @@ interface ProductImage {
               <div>Discounted Price: ${product.discountedPrice.toFixed(2)}</div>
             )}
             <div>Rating: {product.rating}/5</div>
-          </div>
+          </P.ProductContainer>
       );
   }
   
