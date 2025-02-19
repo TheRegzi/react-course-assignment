@@ -69,14 +69,16 @@ interface ProductImage {
     
       return (
           <P.ProductContainer>
-            <h1>{product.title}</h1>
-            <img src={product.image.url} alt={product.title} />
+            <P.ProductHeadline>{product.title}</P.ProductHeadline>
+            <P.ProductImage src={product.image.url} alt={product.title} />
+            <P.TextContainer>
             <p>{product.description}</p>
             <div>Price: ${product.price.toFixed(2)}</div>
             {product.discountedPrice < product.price && (
               <div>Discounted Price: ${product.discountedPrice.toFixed(2)}</div>
             )}
             <div>Rating: {product.rating}/5</div>
+            </P.TextContainer>
           </P.ProductContainer>
       );
   }
