@@ -22,9 +22,6 @@ function Nav() {
           <L.LinkStyle to="/" onClick={() => setIsOpen(false)}>Home</L.LinkStyle>
         </L.ListStyle>
         <L.ListStyle>
-          <L.LinkStyle to="/products" onClick={() => setIsOpen(false)}>Products</L.LinkStyle>
-        </L.ListStyle>
-        <L.ListStyle>
           <L.LinkStyle to="/contact" onClick={() => setIsOpen(false)}>Contact</L.LinkStyle>
         </L.ListStyle>
         <L.ListStyle>

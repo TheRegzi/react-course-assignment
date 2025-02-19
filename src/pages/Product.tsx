@@ -1,4 +1,8 @@
-function Products() {
+import React from 'react';
+
+
+
+function Product() {
     return(
         <div>
             This is the products page
@@ -6,4 +10,4 @@ function Products() {
     );
 }
 
-export default Products;
+export default Product;
