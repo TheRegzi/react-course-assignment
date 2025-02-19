@@ -88,14 +88,23 @@ export const PriceContainer = styled.div`
 `;
 
 export const OriginalPrice = styled.span`
-    ${props => props.children !== props.discountedPrice && `
+  ${props => {
+    if (props.discountedPrice === props.price) {
+      return `
+        color: red;
+        font-weight: bold;
+      `;
+    } else {
+      return `
         text-decoration: line-through;
         color: #999;
-    `}
+      `;
+    }
+  }}
 `;
 
 export const DiscountPrice = styled.span`
-    color: #e74c3c;
+    color: red;
     font-weight: bold;
 `;
 

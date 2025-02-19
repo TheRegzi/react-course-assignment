@@ -10,7 +10,7 @@ interface Product {
     description: string;
     price: number;
     discountedPrice: number;
-    image: string;
+    image: { url: string; alt: string };
     rating: number;
 }
 
@@ -50,7 +50,6 @@ function Home() {
         <H.Container>
             <H.Title>Welcome to Next Level Goods!</H.Title>
             
-
             <S.SearchContainer>
                 <S.SearchInput
                     type="text"
@@ -59,7 +58,6 @@ function Home() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
             </S.SearchContainer>
-
 
             <H.ProductsTitle>Our Next Level Products:</H.ProductsTitle>
             <H.ProductGrid>
@@ -71,9 +69,13 @@ function Home() {
                                 <H.ProductTitle>{product.title}</H.ProductTitle>
                                 <H.ProductDescription>{product.description}</H.ProductDescription>
                                 <H.PriceContainer>
-                                    <H.OriginalPrice>${product.price}</H.OriginalPrice>
+                                    <H.OriginalPrice price={product.price} discountedPrice={product.discountedPrice}>
+                                        ${product.price.toFixed(2)}
+                                    </H.OriginalPrice>
                                     {product.discountedPrice < product.price && (
-                                        <H.DiscountPrice>${product.discountedPrice}</H.DiscountPrice>
+                                        <H.DiscountPrice>
+                                            ${product.discountedPrice.toFixed(2)}
+                                        </H.DiscountPrice>
                                     )}
                                 </H.PriceContainer>
                                 <H.Rating>Rating: {product.rating}/5</H.Rating>
