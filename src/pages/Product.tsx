@@ -86,6 +86,7 @@ interface ProductImage {
       const [isLoading, setIsLoading] = useState<boolean>(false);
       const [isError, setIsError] = useState<boolean>(false);
       const { id } = useParams<RouteParams>();
+      const [isOnSale, setIsOnSale] = useState<boolean>(false);
     
       useEffect(() => {
         async function getData(url: string) {
@@ -97,6 +98,7 @@ interface ProductImage {
             const json = await response.json();
     
             setProduct(json.data);
+            setIsOnSale(json.data.discountedPrice < json.data.price);
           } catch (error) {
             console.log(error);
             setIsError(true);
@@ -128,6 +130,7 @@ interface ProductImage {
             {product.discountedPrice < product.price && (
               <div>Discounted Price: ${product.discountedPrice.toFixed(2)}</div>
             )}
+            <div>{ isOnSale ? <div>You save: ${product.price - product.discountedPrice}!</div> : ''}</div>
             <div>Rating: {product.rating}/5</div>
             <AddToCartButton product={product} />
             </P.TextContainer>
