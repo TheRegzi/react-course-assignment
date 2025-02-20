@@ -81,6 +81,36 @@ interface ProductImage {
     );
   }
 
+  interface ReviewProps {
+    reviews: Review[];
+  }
+  
+  function DisplayReviews({ reviews }: ReviewProps) {
+    if (!reviews || reviews.length === 0) {
+      return <div>No reviews yet</div>;
+    }
+  
+    return (
+      <P.ReviewsContainer>
+        <h3>Customer Reviews</h3>
+        <div>
+          <span>({reviews.length} {reviews.length === 1 ? 'review' : 'reviews'})</span>
+        </div>
+        
+        {reviews.map((review) => (
+          <P.EachReview 
+            key={review.id}>
+            <P.ReviewFlex>
+              <P.ReviewAuthor>{review.username}</P.ReviewAuthor>
+              <span>Rating: {review.rating}/5 ⭐</span>
+            </P.ReviewFlex>
+            <P.ReviewBody>{review.description}</P.ReviewBody>
+          </P.EachReview>
+        ))}
+      </P.ReviewsContainer>
+    );
+  }
+
   function Product() {
       const [product, setProduct] = useState<Product | null>(null);
       const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -130,10 +160,11 @@ interface ProductImage {
             {product.discountedPrice < product.price && (
               <div>Discounted Price: ${product.discountedPrice.toFixed(2)}</div>
             )}
-            <div>{ isOnSale ? <div>You save: ${product.price - product.discountedPrice}!</div> : ''}</div>
+            <div>{ isOnSale ? <div>You save: ${(product.price - product.discountedPrice).toFixed(2)}!</div> : ''}</div>
             <div>Rating: {product.rating}/5</div>
             <AddToCartButton product={product} />
             </P.TextContainer>
+            <DisplayReviews reviews={product.reviews} />
           </P.ProductContainer>
       );
   }
