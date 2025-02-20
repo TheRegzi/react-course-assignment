@@ -30,6 +30,57 @@ interface ProductImage {
     id: string;
   }
   
+  interface CartItem extends Product {
+    quantity: number;
+  }
+  
+  interface AddToCartButtonProps {
+    product: Product;
+  }
+  
+  function AddToCartButton({ product }: AddToCartButtonProps) {
+    const [isAdded, setIsAdded] = useState(false);
+  
+    const handleAddToCart = () => {
+      try {
+        const existingCart: CartItem[] = JSON.parse(localStorage.getItem('cart') || '[]');
+        
+        const existingProductIndex = existingCart.findIndex(item => item.id === product.id);
+        
+        let newCart: CartItem[];
+        
+        if (existingProductIndex !== -1) {
+          newCart = existingCart.map((item, index) => {
+            if (index === existingProductIndex) {
+              return { 
+                ...product, 
+                quantity: item.quantity + 1 
+              };
+            }
+            return item;
+          });
+        } else {
+          newCart = [...existingCart, { 
+            ...product,
+            quantity: 1,
+          }];
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(newCart));
+        setIsAdded(true);
+        setTimeout(() => setIsAdded(false), 2000);
+      } catch (error) {
+        console.error('Error adding to cart:', error);
+      }
+    };
+  
+    return (
+      <button onClick={handleAddToCart}>
+        {isAdded ? 'Added to Cart!' : 'Add to Cart'}
+      </button>
+    );
+  }
+
   function Product() {
       const [product, setProduct] = useState<Product | null>(null);
       const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -78,6 +129,7 @@ interface ProductImage {
               <div>Discounted Price: ${product.discountedPrice.toFixed(2)}</div>
             )}
             <div>Rating: {product.rating}/5</div>
+            <AddToCartButton product={product} />
             </P.TextContainer>
           </P.ProductContainer>
       );
