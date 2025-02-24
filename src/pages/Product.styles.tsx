@@ -17,7 +17,7 @@ width: 1000px;
 padding: 0em;
 
 @media (max-width: 1100px) {
-    width: 700px;
+    width: 750px;
   }
 
   @media (max-width: 780px) {
@@ -26,7 +26,7 @@ padding: 0em;
   }
 
   @media (max-width: 520px) {
-    width: 80%;
+    width: 90%;
     flex-direction: column;
   }
 `
@@ -40,6 +40,10 @@ export const TextContainer = styled.div`
 text-align: left;
 padding: 1.5em;
 font-size: 1.1em;
+
+@media (max-width: 520px) {
+    padding: 1em;
+  }
 `
 
 export const ProductImage = styled.img`
@@ -79,9 +83,13 @@ interface PriceProps {
 export const Price = styled.div`
 display: flex;
 flex-direction: row;
-gap: 1em;
+gap: 0.5em;
 margin: 0.5em 0;
 font-size: 2em;
+
+@media (max-width: 520px) {
+    font-size: 1.5em;
+  }
 `
 
 export const OriginalPrice = styled.span<PriceProps>`
@@ -105,6 +113,17 @@ export const DiscountPrice = styled.span`
     font-weight: bold;
 `;
 
+export const DiscountInfo = styled.div`
+font-weight: bold;
+font-size: 1.2em;
+margin-bottom: 1em;
+`
+
+export const RatingInfo = styled.div`
+color: #f39c12;
+`
+
+
 export const AddToCartBtn = styled.button`
 background: #655469;
 border: none;
@@ -114,8 +133,7 @@ font-family: ${props => props.theme.fonts.secondary};
 font-weight: 500;
 font-size: 1.1em;
 color: white;
-margin: 1em auto;
-
+margin: 1.5em auto;
 
 &:hover {
     transform: scale(1.03);
@@ -127,8 +145,6 @@ export const CartButtonDiv = styled.div`
 display: flex;
 text-align: center;
 `
-
-
 
 export const ReviewsContainer = styled.div`
 padding: 20px;
@@ -147,7 +163,7 @@ margin: 2em auto;
   }
 
   @media (max-width: 520px) {
-    width: 70%;
+    width: 80%;
   }
 `
 

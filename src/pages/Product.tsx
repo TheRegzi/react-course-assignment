@@ -177,9 +177,9 @@ interface ProductImage {
                   )}
                 </P.Price>
                 {isOnSale && (
-                  <div>You save: ${(product.price - product.discountedPrice).toFixed(2)}!</div>
+                  <P.DiscountInfo>You save: ${(product.price - product.discountedPrice).toFixed(2)}!</P.DiscountInfo>
                 )}
-                <div>Rating: {product.rating}/5 ⭐</div>
+                <P.RatingInfo>Rating: {product.rating}/5 ⭐</P.RatingInfo>
                 <P.CartButtonDiv>
                   <AddToCartButton product={product} />
                 </P.CartButtonDiv>
