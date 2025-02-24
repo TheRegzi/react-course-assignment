@@ -75,9 +75,9 @@ interface ProductImage {
     };
   
     return (
-      <button onClick={handleAddToCart}>
+      <P.AddToCartBtn onClick={handleAddToCart}>
         {isAdded ? 'Added to Cart!' : 'Add to Cart'}
-      </button>
+      </P.AddToCartBtn>
     );
   }
 
@@ -87,7 +87,10 @@ interface ProductImage {
   
   function DisplayReviews({ reviews }: ReviewProps) {
     if (!reviews || reviews.length === 0) {
-      return <div>No reviews yet</div>;
+      return <P.ReviewsContainer>
+        <h3>Customer Reviews</h3>
+        <p>No reviews yet</p>
+        </P.ReviewsContainer>;
     }
   
     return (
@@ -151,10 +154,14 @@ interface ProductImage {
       }
     
       return (
-          <P.ProductContainer>
-            <P.ProductHeadline>{product.title}</P.ProductHeadline>
+        <div>
+          <P.ProductRow>
+            <P.ProductDiv>
             <P.ProductImage src={product.image.url} alt={product.title} />
+            </P.ProductDiv>
+            <P.ProductDiv>
             <P.TextContainer>
+            <P.ProductHeadline>{product.title}</P.ProductHeadline>
             <p>{product.description}</p>
             <div>Price: ${product.price.toFixed(2)}</div>
             {product.discountedPrice < product.price && (
@@ -164,8 +171,11 @@ interface ProductImage {
             <div>Rating: {product.rating}/5</div>
             <AddToCartButton product={product} />
             </P.TextContainer>
-            <DisplayReviews reviews={product.reviews} />
-          </P.ProductContainer>
+            </P.ProductDiv>
+            
+          </P.ProductRow>
+          <DisplayReviews reviews={product.reviews} />
+          </div>
       );
   }
   

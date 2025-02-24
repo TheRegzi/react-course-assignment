@@ -1,21 +1,40 @@
 import styled from 'styled-components';
 
-
 export const ProductContainer = styled.div`
-display: flex;
-flex-direction: column;
-margin: 2em auto;
-box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-width: 700px;
-padding: 0.2em 0em 2em;
+width: 1000px;
 
-@media (max-width: 768px) {
+@media (max-width: 1100px) {
     width: 500px;
   }
+`
 
-  @media (max-width: 500px) {
-    width: 300px;
+export const ProductRow = styled.div`
+display: flex;
+flex-direction: row;
+margin: 2em auto;
+box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+width: 1000px;
+padding: 0em;
+
+@media (max-width: 1100px) {
+    width: 700px;
   }
+
+  @media (max-width: 780px) {
+    width: 500px;
+    flex-direction: column;
+  }
+
+  @media (max-width: 520px) {
+    width: 80%;
+    flex-direction: column;
+  }
+`
+
+export const ProductDiv = styled.div`
+display: flex;
+flex-direction: column;
+
 `
 
 export const TextContainer = styled.div`
@@ -24,15 +43,22 @@ padding: 1em;
 `
 
 export const ProductImage = styled.img`
-width: 670px;
+width: 500px;
+height: 600px;
+object-fit: cover;
 margin: 0 auto;
 
-@media (max-width: 768px) {
-    width: 470px;
+@media (max-width: 1100px) {
+    width: 370px;
+    height: 500px;
   }
 
-  @media (max-width: 500px) {
-    width: 270px;
+  @media (max-width: 780px) {
+    width: 500px;
+  }
+
+  @media (max-width: 520px) {
+    width: 100%;
   }
 
 `
@@ -42,11 +68,32 @@ font-family: ${props => props.theme.fonts.heading};
 margin: 0.5em auto;
 `
 
+export const AddToCartBtn = styled.button`
+background: #655469;
+
+`
+
+
+
 export const ReviewsContainer = styled.div`
-margin-top: 20px; 
 padding: 20px;
 background: #f5f5f5; 
 border-radius: 8px;
+width: 800px;
+margin: 2em auto;
+
+@media (max-width: 1100px) {
+    width: 600px;
+  }
+
+  @media (max-width: 780px) {
+    width: 400px;
+    flex-direction: column;
+  }
+
+  @media (max-width: 520px) {
+    width: 70%;
+  }
 `
 
 export const EachReview = styled.div`
