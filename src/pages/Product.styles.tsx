@@ -34,12 +34,12 @@ padding: 0em;
 export const ProductDiv = styled.div`
 display: flex;
 flex-direction: column;
-
 `
 
 export const TextContainer = styled.div`
 text-align: left;
-padding: 1em;
+padding: 1.5em;
+font-size: 1.1em;
 `
 
 export const ProductImage = styled.img`
@@ -60,13 +60,50 @@ margin: 0 auto;
   @media (max-width: 520px) {
     width: 100%;
   }
-
 `
 
 export const ProductHeadline = styled.h1`
 font-family: ${props => props.theme.fonts.heading};
 margin: 0.5em auto;
 `
+
+export const ProductDescription = styled.p`
+margin: 1.5em 0;
+`
+
+interface PriceProps {
+  discountedPrice: number;
+  price: number;
+}
+
+export const Price = styled.div`
+display: flex;
+flex-direction: row;
+gap: 1em;
+margin: 0.5em 0;
+font-size: 2em;
+`
+
+export const OriginalPrice = styled.span<PriceProps>`
+  ${props => {
+    if (props.discountedPrice === props.price) {
+      return `
+        color: red;
+        font-weight: bold;
+      `;
+    } else {
+      return `
+        text-decoration: line-through;
+        color: #999;
+      `;
+    }
+  }}
+`;
+
+export const DiscountPrice = styled.span`
+    color: red;
+    font-weight: bold;
+`;
 
 export const AddToCartBtn = styled.button`
 background: #655469;
@@ -75,9 +112,20 @@ border-radius: 5px;
 padding: 0.5em 1.5em;
 font-family: ${props => props.theme.fonts.secondary};
 font-weight: 500;
-font-size: 1em;
+font-size: 1.1em;
 color: white;
+margin: 1em auto;
 
+
+&:hover {
+    transform: scale(1.03);
+    opacity: 0.8;
+  }
+`
+
+export const CartButtonDiv = styled.div`
+display: flex;
+text-align: center;
 `
 
 

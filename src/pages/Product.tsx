@@ -157,25 +157,37 @@ interface ProductImage {
         <div>
           <P.ProductRow>
             <P.ProductDiv>
-            <P.ProductImage src={product.image.url} alt={product.title} />
+              <P.ProductImage src={product.image.url} alt={product.title} />
             </P.ProductDiv>
             <P.ProductDiv>
-            <P.TextContainer>
-            <P.ProductHeadline>{product.title}</P.ProductHeadline>
-            <p>{product.description}</p>
-            <div>Price: ${product.price.toFixed(2)}</div>
-            {product.discountedPrice < product.price && (
-              <div>Discounted Price: ${product.discountedPrice.toFixed(2)}</div>
-            )}
-            <div>{ isOnSale ? <div>You save: ${(product.price - product.discountedPrice).toFixed(2)}!</div> : ''}</div>
-            <div>Rating: {product.rating}/5</div>
-            <AddToCartButton product={product} />
-            </P.TextContainer>
+              <P.TextContainer>
+                <P.ProductHeadline>{product.title}</P.ProductHeadline>
+                <P.ProductDescription>{product.description}</P.ProductDescription>
+                <P.Price>
+                  <P.OriginalPrice 
+                    price={product.price} 
+                    discountedPrice={product.discountedPrice}
+                  >
+                    ${product.price.toFixed(2)}
+                  </P.OriginalPrice>
+                  {product.discountedPrice < product.price && (
+                    <P.DiscountPrice>
+                      ${product.discountedPrice.toFixed(2)}
+                    </P.DiscountPrice>
+                  )}
+                </P.Price>
+                {isOnSale && (
+                  <div>You save: ${(product.price - product.discountedPrice).toFixed(2)}!</div>
+                )}
+                <div>Rating: {product.rating}/5 ⭐</div>
+                <P.CartButtonDiv>
+                  <AddToCartButton product={product} />
+                </P.CartButtonDiv>
+              </P.TextContainer>
             </P.ProductDiv>
-            
           </P.ProductRow>
           <DisplayReviews reviews={product.reviews} />
-          </div>
+        </div>
       );
   }
   
