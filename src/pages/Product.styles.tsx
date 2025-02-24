@@ -70,6 +70,13 @@ margin: 0.5em auto;
 
 export const AddToCartBtn = styled.button`
 background: #655469;
+border: none;
+border-radius: 5px;
+padding: 0.5em 1.5em;
+font-family: ${props => props.theme.fonts.secondary};
+font-weight: 500;
+font-size: 1em;
+color: white;
 
 `
 
