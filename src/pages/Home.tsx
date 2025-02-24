@@ -67,7 +67,9 @@ function Home() {
                             <H.ProductImage src={product.image.url} alt={product.title} />
                             <H.ProductContent>
                                 <H.ProductTitle>{product.title}</H.ProductTitle>
-                                <H.ProductDescription>{product.description}</H.ProductDescription>
+                                <H.ProductDescription>
+                                {product.description.length > 36  ? `${product.description.slice(0, 36)}...` : product.description}
+                                </H.ProductDescription>
                                 <H.PriceContainer>
                                     <H.OriginalPrice price={product.price} discountedPrice={product.discountedPrice}>
                                         ${product.price.toFixed(2)}
