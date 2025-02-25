@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import * as C from './Cart.styles';
 
 interface ProductImage {
   url: string;
@@ -52,33 +53,31 @@ interface CartItem extends Product {
     }
   
     return (
-        <div>
+        <C.CartContainer>
+          <h1>Shopping Cart</h1>
           {cartItems.map((cartItem) => (
-            <Link to={`/product/${cartItem.id}`} key={cartItem.id}>
-              <div>
-                <img src={cartItem.image.url} alt={cartItem.title} />
+            <C.ProductLink to={`/product/${cartItem.id}`} key={cartItem.id}>
+              <C.ProductContainer>
                 <div>
+                <C.ProductImg src={cartItem.image.url} alt={cartItem.title} />
+                </div>
+                <C.ProductInfo>
                   <h2>{cartItem.title}</h2>
                   <p>{cartItem.description}</p>
                   <div>
-                    <div>
-                      ${cartItem.price.toFixed(2)}
-                    </div>
-                    {cartItem.discountedPrice < cartItem.price && (
                       <div>
                         ${cartItem.discountedPrice.toFixed(2)}
                       </div>
-                    )}
                     <div>
                       Quantity: {cartItem.quantity}
                     </div>
                   </div>
-                </div>
-              </div>
-            </Link>
+                </C.ProductInfo>
+              </C.ProductContainer>
+            </C.ProductLink>
           ))}
           <div>Total: ${totalSum.toFixed(2)}</div>
-        </div>
+        </C.CartContainer>
       );
   }
   
