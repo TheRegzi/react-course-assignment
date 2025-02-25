@@ -86,3 +86,20 @@ export const HamburgerButton = styled.button`
   }
 `;
 
+export const CartContainer = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+export const CartCount = styled.span`
+  position: absolute;
+  top: -10px;
+  right: -7px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8rem;
+  min-width: 10px;
+  text-align: center;
+`;

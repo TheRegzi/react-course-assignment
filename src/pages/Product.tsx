@@ -69,6 +69,7 @@ interface ProductImage {
         localStorage.setItem('cart', JSON.stringify(newCart));
         setIsAdded(true);
         setTimeout(() => setIsAdded(false), 2000);
+        window.dispatchEvent(new Event('cartUpdated'));
       } catch (error) {
         console.error('Error adding to cart:', error);
       }

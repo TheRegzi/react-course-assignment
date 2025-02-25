@@ -1,19 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as L from "./Nav.styles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 function Nav() {
-
   const [isOpen, setIsOpen] = useState(false);
+  const [cartItemCount, setCartItemCount] = useState(0);
 
   const toggleMenu = () => {
-      setIsOpen(!isOpen);
+    setIsOpen(!isOpen);
   };
 
-    return (
-      <L.Nav>
-       <L.HamburgerButton onClick={toggleMenu}>
+  useEffect(() => {
+    const updateCartCount = () => {
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      const totalItems = cart.reduce((sum: number, item: any) => sum + item.quantity, 0);
+      setCartItemCount(totalItems);
+    };
+
+    updateCartCount();
+    window.addEventListener('cartUpdated', updateCartCount);
+    return () => window.removeEventListener('cartUpdated', updateCartCount);
+  }, []);
+
+  return (
+    <L.Nav>
+      <L.HamburgerButton onClick={toggleMenu}>
         <L.StyledIcon icon={faBars} />
       </L.HamburgerButton>
 
@@ -25,11 +37,16 @@ function Nav() {
           <L.LinkStyle to="/contact" onClick={() => setIsOpen(false)}>Contact</L.LinkStyle>
         </L.ListStyle>
         <L.ListStyle>
-          <L.LinkStyle to="/cart" onClick={() => setIsOpen(false)}>Cart</L.LinkStyle>
+          <L.LinkStyle to="/cart" onClick={() => setIsOpen(false)}>
+            <L.CartContainer>
+              <FontAwesomeIcon icon={faShoppingCart} />
+              {cartItemCount > 0 && <L.CartCount>{cartItemCount}</L.CartCount>}
+            </L.CartContainer>
+          </L.LinkStyle>
         </L.ListStyle>
       </L.NavList>
     </L.Nav>
   );
 }
 
-  export default Nav;
+export default Nav;

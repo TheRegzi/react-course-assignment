@@ -51,7 +51,7 @@ export const ProductCard = styled.div`
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.2s;
-    height: 430px;
+    height: 420px;
     
     &:hover {
         transform: translateY(-5px);

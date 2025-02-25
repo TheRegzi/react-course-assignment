@@ -84,7 +84,7 @@ export const Price = styled.div`
 display: flex;
 flex-direction: row;
 gap: 0.5em;
-margin: 0.5em 0;
+margin: 0;
 font-size: 2em;
 
 @media (max-width: 520px) {
