@@ -34,6 +34,12 @@ padding: 0em;
 export const ProductDiv = styled.div`
 display: flex;
 flex-direction: column;
+width: 500px;
+
+@media (max-width: 520px) {
+    width: 100%;
+    flex-direction: column;
+  }
 `
 
 export const TextContainer = styled.div`
@@ -53,7 +59,7 @@ object-fit: cover;
 margin: 0 auto;
 
 @media (max-width: 1100px) {
-    width: 370px;
+    width: 380px;
     height: 500px;
   }
 
@@ -134,6 +140,7 @@ font-weight: 500;
 font-size: 1.1em;
 color: white;
 margin: 1.5em auto;
+cursor: pointer;
 
 &:hover {
     transform: scale(1.03);
