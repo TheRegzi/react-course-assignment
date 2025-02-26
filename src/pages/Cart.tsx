@@ -74,6 +74,11 @@ function Cart() {
         <C.CheckoutButton to={`/`}>Go to Home</C.CheckoutButton>
         </C.CartContainer>;
     }
+
+    const handleClick = () => {
+      localStorage.clear();
+      window.dispatchEvent(new Event('cartUpdated'));
+    };
   
     return (
         <C.CartContainer>
@@ -110,7 +115,7 @@ function Cart() {
             </C.ProductLink>
           ))}
           <C.TotalInfo>Total: ${totalSum.toFixed(2)}</C.TotalInfo>
-          <C.CheckoutButton to='/checkout'>Proceed to Checkout</C.CheckoutButton>
+          <C.CheckoutButton to='/checkout' onClick={handleClick}>Proceed to Checkout</C.CheckoutButton>
         </C.CartContainer>
       );
   }
