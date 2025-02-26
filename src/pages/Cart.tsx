@@ -110,7 +110,7 @@ function Cart() {
             </C.ProductLink>
           ))}
           <C.TotalInfo>Total: ${totalSum.toFixed(2)}</C.TotalInfo>
-          <C.CheckoutButton to={`./Checkout.tsx`}>Proceed to Checkout</C.CheckoutButton>
+          <C.CheckoutButton to='/checkout'>Proceed to Checkout</C.CheckoutButton>
         </C.CartContainer>
       );
   }

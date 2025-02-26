@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Product from "../pages/Product";
 import Contact from "../pages/Contact";
 import Cart from "../pages/Cart";
+import Checkout from "../pages/Checkout";
 
 function AppRoutes() {
   return (
@@ -13,6 +14,7 @@ function AppRoutes() {
           <Route path="product/:id" element={<Product />} />
           <Route path="contact" element={<Contact />} />
           <Route path="cart" element={<Cart />} />
+          <Route path="checkout" element={<Checkout />} />
         </Route>
       </Routes>
   );
