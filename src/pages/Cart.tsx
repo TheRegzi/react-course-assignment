@@ -77,7 +77,7 @@ function Cart() {
   
     return (
         <C.CartContainer>
-          <h1>Shopping Cart</h1>
+          <C.Headline>Shopping Cart</C.Headline>
           {cartItems.map((cartItem) => (
             <C.ProductLink to={`/product/${cartItem.id}`} key={cartItem.id}>
               <C.ProductContainer>
@@ -85,11 +85,11 @@ function Cart() {
                 <C.ProductImg src={cartItem.image.url} alt={cartItem.title} />
                 </div>
                 <C.ProductInfo>
-                  <h2>{cartItem.title}</h2>
-                  <p>{cartItem.description.length > 36  ? `${cartItem.description.slice(0, 36)}...` : cartItem.description}</p>
-                  <div>
+                  <C.ProductTitle>{cartItem.title}</C.ProductTitle>
+                  <C.ProductDescription>{cartItem.description.length > 36  ? `${cartItem.description.slice(0, 36)}...` : cartItem.description}</C.ProductDescription>
+                  <C.ProductPrice>
                         ${cartItem.discountedPrice.toFixed(2)}
-                      </div>
+                      </C.ProductPrice>
                   <C.QuantityContainer> 
                   <div>
                   <C.QuantityButton onClick={(e) => {
@@ -109,7 +109,7 @@ function Cart() {
               </C.ProductContainer>
             </C.ProductLink>
           ))}
-          <div>Total: ${totalSum.toFixed(2)}</div>
+          <C.TotalInfo>Total: ${totalSum.toFixed(2)}</C.TotalInfo>
           <C.CheckoutButton to={`./Checkout.tsx`}>Proceed to Checkout</C.CheckoutButton>
         </C.CartContainer>
       );
