@@ -1,35 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
+import * as C from './Contact.styles';
 
-function Contact() {
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('');
-  const [body, setBody] = useState('');
-  const [message, setMessage] = useState('');
-  const [messageType, setMessageType] = useState('');
+type MessageType = 'success' | 'error' | '';
 
-  function onTextInputChange(event) {
+interface FormData {
+  fullName: string;
+  email: string;
+  subject: string;
+  body: string;
+}
+
+function Contact(): JSX.Element {
+  const [fullName, setFullName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [subject, setSubject] = useState<string>('');
+  const [body, setBody] = useState<string>('');
+  const [message, setMessage] = useState<string>('');
+  const [messageType, setMessageType] = useState<MessageType>('');
+
+  function onTextInputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void {
     const value = event.target.value;
-    if (event.target.name === 'full-name') {
-      setFullName(value);
-    }
-    if (event.target.name === 'email') {
-      setEmail(value);
-    }
-    if (event.target.name === 'subject') {
-      setSubject(value);
-    }
-    if (event.target.name === 'body') {
-      setBody(value);
+    const name = event.target.name;
+
+    switch (name) {
+      case 'full-name':
+        setFullName(value);
+        break;
+      case 'email':
+        setEmail(value);
+        break;
+      case 'subject':
+        setSubject(value);
+        break;
+      case 'body':
+        setBody(value);
+        break;
     }
   }
 
-  function displayMessage(messageText, type) {
+  function displayMessage(messageText: string, type: MessageType): void {
     setMessage(messageText);
-    setMessageType(messageType);
+    setMessageType(type);
   }
 
-  function validateForm() {
+  function validateForm(): boolean {
     if (fullName.length < 3) {
       displayMessage('Full name must be at least 3 characters', 'error');
       return false;
@@ -49,16 +63,18 @@ function Contact() {
     return true;
   }
 
-  function onFormSubmit(e) {
+  function onFormSubmit(e: FormEvent<HTMLFormElement>): void {
     e.preventDefault();
     
     if (validateForm()) {
-      console.log('Form submitted:', {
+      const formData: FormData = {
         fullName,
         email,
         subject,
         body
-      });
+      };
+      
+      console.log('Form submitted:', formData);
       
       setFullName('');
       setEmail('');
@@ -70,55 +86,57 @@ function Contact() {
   }
 
   return (
-    <div>
+    <C.ContactContainer>
       <h1>Contact us</h1>
       <form onSubmit={onFormSubmit}>
-        <div>
+        <C.FormGroup>
           <label htmlFor="full-name">Full name</label>
-          <input
+          <C.InputStyle
             name="full-name"
             value={fullName}
             placeholder="Your full name"
             onChange={onTextInputChange}
           />
-        </div>
+        </C.FormGroup>
 
-        <div>
+        <C.FormGroup>
           <label htmlFor="email">Email</label>
-          <input
+          <C.InputStyle
             name="email"
             type="email"
             value={email}
             placeholder="Your email"
             onChange={onTextInputChange}
           />
-        </div>
+        </C.FormGroup>
 
-        <div>
+        <C.FormGroup>
           <label htmlFor="subject">Subject</label>
-          <input
+          <C.InputStyle
             name="subject"
             value={subject}
             placeholder="Fill in the subject"
             onChange={onTextInputChange}
           />
-        </div>
+        </C.FormGroup>
 
-        <div>
+        <C.FormGroup>
           <label htmlFor="body">Message</label>
-          <textarea
+          <C.MessageStyle
             name="body"
             value={body}
             placeholder="Fill in the message"
             onChange={onTextInputChange}
           />
-        </div>
-        <div>
+        </C.FormGroup>
+        <C.UserMessage messageType={messageType}>
           {message}
-        </div>
-        <button type="submit">Submit</button>
+        </C.UserMessage>
+        <C.CenterButton>
+          <C.SubmitButton type="submit">Submit</C.SubmitButton>
+        </C.CenterButton>
       </form>
-    </div>
+    </C.ContactContainer>
   );
 }
 
