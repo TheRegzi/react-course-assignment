@@ -93,6 +93,8 @@ function Contact(): JSX.Element {
           <label htmlFor="full-name">Full name</label>
           <C.InputStyle
             name="full-name"
+            id="full-name"
+            autoComplete="name"
             value={fullName}
             placeholder="Your full name"
             onChange={onTextInputChange}
@@ -103,7 +105,9 @@ function Contact(): JSX.Element {
           <label htmlFor="email">Email</label>
           <C.InputStyle
             name="email"
+            id="email"
             type="email"
+            autoComplete="email"
             value={email}
             placeholder="Your email"
             onChange={onTextInputChange}
@@ -114,6 +118,7 @@ function Contact(): JSX.Element {
           <label htmlFor="subject">Subject</label>
           <C.InputStyle
             name="subject"
+            id="subject"
             value={subject}
             placeholder="Fill in the subject"
             onChange={onTextInputChange}
@@ -124,6 +129,7 @@ function Contact(): JSX.Element {
           <label htmlFor="body">Message</label>
           <C.MessageStyle
             name="body"
+            id="body"
             value={body}
             placeholder="Fill in the message"
             onChange={onTextInputChange}
