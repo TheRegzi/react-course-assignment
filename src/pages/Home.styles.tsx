@@ -29,10 +29,12 @@ export const ErrorContainer = styled.div`
 export const Title = styled.h1`
     text-align: center;
     margin-bottom: 20px;
+    font-family: ${props => props.theme.fonts.heading};
 `;
 
 export const ProductsTitle = styled.h2`
     margin: 20px 0;
+    font-family: ${props => props.theme.fonts.heading};
 `;
 
 export const ProductGrid = styled.div`

@@ -20,6 +20,7 @@ interface SearchBarProps {
             <S.SearchInput
                 name='search'
                 type="text"
+                id="search"
                 value={searchTerm}
                 onChange={handleSearch}
                 placeholder="Search products..."
