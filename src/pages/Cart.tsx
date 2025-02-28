@@ -86,9 +86,9 @@ function Cart() {
           {cartItems.map((cartItem) => (
             <C.ProductLink to={`/product/${cartItem.id}`} key={cartItem.id}>
               <C.ProductContainer>
-                <div>
+                <C.ImgDiv>
                 <C.ProductImg src={cartItem.image.url} alt={cartItem.title} />
-                </div>
+                </C.ImgDiv>
                 <C.ProductInfo>
                   <C.ProductTitle>{cartItem.title}</C.ProductTitle>
                   <C.ProductDescription>{cartItem.description.length > 36  ? `${cartItem.description.slice(0, 36)}...` : cartItem.description}</C.ProductDescription>

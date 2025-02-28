@@ -31,19 +31,28 @@ color: black;
 
 export const ProductImg = styled.img`
 width: 150px;
-height: 210px;
+height: 150px;
 object-fit: cover;
+margin: 1em;
 
 @media (max-width: 600px) {
-    width: 120px;
-    
+    width: 130px;
+    height: 130px;
+    margin: 0.5em;
   }
 
 `
 
+export const ImgDiv = styled.div`
+display: flex;
+margin: 0 auto;
+align-items: center;
+width: 200px;
+`
+
 export const ProductContainer = styled.div`
 width: 500px;
-height: 210px;
+height: auto;
 display: flex;
 flex-direction: row;
 border: 2px solid #EBDBFA;
@@ -56,17 +65,21 @@ overflow: hidden;
   }
 
 @media (max-width: 600px) {
-    width: 300px;
-    height: 180px;
+    width: 320px;
+    margin: 0.5em;
   }
 
 `
 
 export const ProductInfo = styled.div`
 padding: 0em 2em 1em;
+width: 60%;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
 
 @media (max-width: 600px) {
-    padding: 0 0.5em;
+    padding: 0 1.5em;
   }
 
 `
@@ -74,9 +87,6 @@ padding: 0em 2em 1em;
 export const ProductTitle = styled.h2`
 font-family: ${props => props.theme.fonts.heading};
 
-@media (max-width: 600px) {
-    margin: 0.5em 0;
-  }
 `
 
 export const ProductDescription = styled.p`
@@ -97,7 +107,7 @@ text-decoration: none;
 cursor: pointer;
 padding: 0.5em 1em;
 font-family: ${props => props.theme.fonts.secondary};
-font-size: 1.1em;
+font-size: 1.2em;
 margin: 1em 0em 2.5em;
 
 &:hover {
@@ -132,7 +142,7 @@ height: 40px;
 
 export const TotalInfo = styled.div`
 font-weight: bold;
-font-size: 1.3em;
+font-size: 1.5em;
 margin: 0.5em;
 font-family: ${props => props.theme.fonts.primary};
 `
