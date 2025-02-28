@@ -16,6 +16,8 @@ Uses styled-components for styling.
 
 ## Technologies Used
 
+- HTML
+
 - React
 
 - TypeScript
