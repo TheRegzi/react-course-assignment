@@ -8,6 +8,12 @@ align-items: center;
 box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 width: 600px;
 padding: 1em;
+
+@media (max-width: 768px) {
+    width: 330px;
+    
+  }
+
 `
 
 export const FormGroup = styled.div`
@@ -17,6 +23,11 @@ width: 400px;
 font-weight: 500;
 font-size: 1.2em;
 margin: 0.5em;
+
+@media (max-width: 768px) {
+    width: 300px;
+    
+  }
 `
 
 
