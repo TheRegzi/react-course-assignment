@@ -129,8 +129,6 @@ font-weight: bold;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transform: scale(1.03);
   }
-
-  
 `
 
 export const ButtonContainer = styled.div`
