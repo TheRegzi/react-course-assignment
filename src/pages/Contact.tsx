@@ -10,7 +10,7 @@ interface FormData {
   body: string;
 }
 
-function Contact(): JSX.Element {
+function Contact() {
   const [fullName, setFullName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [subject, setSubject] = useState<string>('');

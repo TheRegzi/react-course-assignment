@@ -14,7 +14,7 @@ interface ProductImage {
     description: string;
   }
   
-  interface Product {
+  interface ProductType {
     id: string;
     title: string;
     description: string;
@@ -26,16 +26,12 @@ interface ProductImage {
     reviews: Review[];
   }
   
-  interface RouteParams {
-    id: string;
-  }
-  
-  interface CartItem extends Product {
+  interface CartItem extends ProductType {
     quantity: number;
   }
   
   interface AddToCartButtonProps {
-    product: Product;
+    product: ProductType;
   }
   
   function AddToCartButton({ product }: AddToCartButtonProps) {
@@ -116,80 +112,82 @@ interface ProductImage {
   }
 
   function Product() {
-      const [product, setProduct] = useState<Product | null>(null);
-      const [isLoading, setIsLoading] = useState<boolean>(false);
-      const [isError, setIsError] = useState<boolean>(false);
-      const { id } = useParams<RouteParams>();
-      const [isOnSale, setIsOnSale] = useState<boolean>(false);
-    
-      useEffect(() => {
+    const [productData, setProductData] = useState<ProductType | null>(null);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isError, setIsError] = useState<boolean>(false);
+    const { id } = useParams<{ id: string }>();
+    const [isOnSale, setIsOnSale] = useState<boolean>(false);
+
+    useEffect(() => {
         async function getData(url: string) {
-          try {
-            setIsLoading(true);
-            setIsError(false);
-    
-            const response = await fetch(url);
-            const json = await response.json();
-    
-            setProduct(json.data);
-            setIsOnSale(json.data.discountedPrice < json.data.price);
-          } catch (error) {
-            console.log(error);
-            setIsError(true);
-          } finally {
-            setIsLoading(false);
-          }
+            try {
+                setIsLoading(true);
+                setIsError(false);
+
+                const response = await fetch(url);
+                const json = await response.json();
+
+                setProductData(json.data);
+                setIsOnSale(json.data.discountedPrice < json.data.price);
+            } catch (error) {
+                console.log(error);
+                setIsError(true);
+            } finally {
+                setIsLoading(false);
+            }
         }
-    
+
         if (id) {
-          getData(`https://v2.api.noroff.dev/online-shop/${id}`);
+            getData(`https://v2.api.noroff.dev/online-shop/${id}`);
         }
-      }, [id]);
-    
-      if (isLoading || !product) {
+    }, [id]);
+
+    if (isLoading || !productData) {
         return <div>Loading</div>;
-      }
-    
-      if (isError) {
+    }
+
+    if (isError) {
         return <div>Error</div>;
-      }
-    
-      return (
+    }
+
+    return (
         <div>
-          <P.ProductRow>
-            <P.ProductDiv>
-              <P.ProductImage src={product.image.url} alt={product.title} />
-            </P.ProductDiv>
-            <P.ProductDiv>
-              <P.TextContainer>
-                <P.ProductHeadline>{product.title}</P.ProductHeadline>
-                <P.ProductDescription>{product.description}</P.ProductDescription>
-                <P.Price>
-                  <P.OriginalPrice 
-                    price={product.price} 
-                    discountedPrice={product.discountedPrice}
-                  >
-                    ${product.price.toFixed(2)}
-                  </P.OriginalPrice>
-                  {product.discountedPrice < product.price && (
-                    <P.DiscountPrice>
-                      ${product.discountedPrice.toFixed(2)}
-                    </P.DiscountPrice>
-                  )}
-                </P.Price>
-                {isOnSale && (
-                  <P.DiscountInfo>You save: ${(product.price - product.discountedPrice).toFixed(2)}!</P.DiscountInfo>
-                )}
-                <P.RatingInfo>Rating: {product.rating}/5 ⭐</P.RatingInfo>
-                <P.CartButtonDiv>
-                  <AddToCartButton product={product} />
-                </P.CartButtonDiv>
-              </P.TextContainer>
-            </P.ProductDiv>
-          </P.ProductRow>
-          <DisplayReviews reviews={product.reviews} />
+            <P.ProductRow>
+                <P.ProductDiv>
+                    <P.ProductImage src={productData.image.url} alt={productData.title} />
+                </P.ProductDiv>
+                <P.ProductDiv>
+                    <P.TextContainer>
+                        <P.ProductHeadline>{productData.title}</P.ProductHeadline>
+                        <P.ProductDescription>{productData.description}</P.ProductDescription>
+                        <P.Price>
+                            <P.OriginalPrice
+                                price={productData.price}
+                                discountedPrice={productData.discountedPrice}
+                            >
+                                ${productData.price.toFixed(2)}
+                            </P.OriginalPrice>
+                            {productData.discountedPrice < productData.price && (
+                                <P.DiscountPrice>
+                                    ${productData.discountedPrice.toFixed(2)}
+                                </P.DiscountPrice>
+                            )}
+                        </P.Price>
+                        {isOnSale && (
+                            <P.DiscountInfo>
+                                You save: ${(productData.price - productData.discountedPrice).toFixed(2)}!
+                            </P.DiscountInfo>
+                        )}
+                        <P.RatingInfo>Rating: {productData.rating}/5 ⭐</P.RatingInfo>
+                        <P.CartButtonDiv>
+                            <AddToCartButton product={productData} />
+                        </P.CartButtonDiv>
+                    </P.TextContainer>
+                </P.ProductDiv>
+            </P.ProductRow>
+            <DisplayReviews reviews={productData.reviews} />
         </div>
-      );
-  }
+    );
+}
   
   export default Product;
