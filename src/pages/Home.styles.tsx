@@ -124,6 +124,7 @@ padding: 0.5em 1.5em;
 width: 100%;
 cursor: pointer;
 font-weight: bold;
+color: black;
 
 &:hover{
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
