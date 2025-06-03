@@ -3,13 +3,6 @@ import * as C from "./Contact.styles";
 
 type MessageType = "success" | "error" | "";
 
-interface FormData {
-  fullName: string;
-  email: string;
-  subject: string;
-  body: string;
-}
-
 function Contact() {
   const [fullName, setFullName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -69,13 +62,6 @@ function Contact() {
     e.preventDefault();
 
     if (validateForm()) {
-      const formData: FormData = {
-        fullName,
-        email,
-        subject,
-        body,
-      };
-
       setFullName("");
       setEmail("");
       setSubject("");
