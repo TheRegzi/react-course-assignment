@@ -111,7 +111,6 @@ function Contact() {
             onChange={onTextInputChange}
           />
         </C.FormGroup>
-
         <C.FormGroup>
           <label htmlFor="subject">Subject</label>
           <C.InputStyle
@@ -122,7 +121,6 @@ function Contact() {
             onChange={onTextInputChange}
           />
         </C.FormGroup>
-
         <C.FormGroup>
           <label htmlFor="body">Message</label>
           <C.MessageStyle
