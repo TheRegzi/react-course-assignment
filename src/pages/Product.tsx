@@ -107,7 +107,6 @@ function DisplayReviews({ reviews }: ReviewProps) {
           ({reviews.length} {reviews.length === 1 ? "review" : "reviews"})
         </span>
       </div>
-
       {reviews.map((review) => (
         <P.EachReview key={review.id}>
           <P.ReviewFlex>

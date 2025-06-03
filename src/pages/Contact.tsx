@@ -99,7 +99,6 @@ function Contact() {
             onChange={onTextInputChange}
           />
         </C.FormGroup>
-
         <C.FormGroup>
           <label htmlFor="email">Email</label>
           <C.InputStyle
