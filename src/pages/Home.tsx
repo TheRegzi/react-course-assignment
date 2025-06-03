@@ -62,7 +62,7 @@ function Home() {
       <H.ProductsTitle>Our Next Level Products:</H.ProductsTitle>
       <H.ProductGrid>
         {displayedProducts.map((product) => (
-          <H.ProductLink to={`/product/${product.id}`} key={product.id}>
+          <H.ProductLink to={`/product/${product.id}`}>
             <H.ProductCard>
               <H.ProductImage src={product.image.url} alt={product.title} />
               <H.ProductContent>
